@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Github, Linkedin, Mail, Terminal, Code2, Rocket, ExternalLink, Briefcase, GraduationCap, Heart, Phone, User, Sun, Moon } from 'lucide-react';
-
+import { Github, Linkedin, Mail, Rocket, ExternalLink, Briefcase, GraduationCap, Heart, Phone, User, Sun, Moon } from 'lucide-react';
 function App() {
   const [isDark, setIsDark] = useState(() => {
     const savedTheme = localStorage.getItem('theme');
@@ -20,7 +19,7 @@ function App() {
       {/* Theme Toggle Button */}
       <button
         onClick={() => setIsDark(!isDark)}
-        className={`fixed top-6 right-6 p-3 rounded-full transition-colors duration-300 ${
+        className={`fixed top-6 right-6 z-[60] p-3 rounded-full transition-colors duration-300 ${
           isDark 
             ? 'bg-gray-800 hover:bg-gray-700 text-yellow-400' 
             : 'bg-white hover:bg-gray-100 text-gray-900 shadow-lg'
@@ -31,35 +30,63 @@ function App() {
       </button>
 
       {/* Hero Section */}
-      <header className="container mx-auto px-6 py-16 md:py-32">
-        <div className="flex flex-col items-center text-center">
-          <div className="relative">
-            <img
-              src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&q=80&w=300&h=300"
-              alt="Profile"
-              className="w-32 h-32 rounded-full object-cover border-4 border-blue-500 shadow-xl"
-            />
-            <div className="absolute -bottom-2 -right-2 bg-blue-500 p-2 rounded-full">
-              <Code2 className="w-5 h-5 text-white" />
+      <header className={`hero-wrap ${isDark ? 'hero-wrap-dark' : 'hero-wrap-light'}`}>
+        <div className={`hero-overlay ${isDark ? 'hero-overlay-dark' : 'hero-overlay-light'}`}></div>
+        <div className="relative z-10 mx-auto max-w-6xl px-6 pb-16 pt-8 md:pb-24 md:pt-10">
+          <nav className="flex items-center justify-between">
+            <p className={`text-xl font-bold tracking-[0.2em] ${isDark ? 'text-white' : 'text-slate-900'}`}>MANDEEP</p>
+            <ul className={`hidden items-center gap-8 text-sm font-semibold md:flex ${isDark ? 'text-white/85' : 'text-slate-700'}`}>
+              <li><a href="#" className="hover:text-cyan-500 transition-colors">Home</a></li>
+              <li><a href="#" className="hover:text-cyan-500 transition-colors">About</a></li>
+              <li><a href="#" className="hover:text-cyan-500 transition-colors">Skills</a></li>
+              <li><a href="#" className="hover:text-cyan-500 transition-colors">Portfolio</a></li>
+              <li><a href="#" className="hover:text-cyan-500 transition-colors">Contact</a></li>
+            </ul>
+          </nav>
+
+          <div className="mt-12 grid items-center gap-12 md:mt-16 md:grid-cols-2">
+            <div className="text-center md:text-left">
+              <h1 className={`text-4xl font-bold leading-tight md:text-6xl ${isDark ? 'text-white' : 'text-slate-900'}`}>MANDEEP KUMAR</h1>
+              <h2 className={`mt-3 text-2xl font-semibold md:text-4xl ${isDark ? 'text-white' : 'text-slate-800'}`}>
+                And I&apos;m a <span className="text-gradient-common">Backend Developer</span>
+              </h2>
+              <p className={`mx-auto mt-5 max-w-xl text-base leading-7 md:mx-0 ${isDark ? 'text-slate-200' : 'text-slate-700'}`}>
+                  I'm a passionate developer with 2+ years of experience building web applications.
+              I specialize in ASP.NET Core with C#. When I'm not coding,
+              you can find me contributing to open source projects or writing technical blogs.
+              </p>
+
+              <div className="mt-7 flex justify-center gap-3 md:justify-start">
+                <a href="#" className="hero-social"><Github className="h-5 w-5" /></a>
+                <a href="#" className="hero-social"><Linkedin className="h-5 w-5" /></a>
+                <a href="#" className="hero-social"><Mail className="h-5 w-5" /></a>
+              </div>
+
+              <div className="mt-8 flex flex-wrap justify-center gap-4 md:justify-start">
+                <a href="#" className="hero-btn">Download CV</a>
+                <a href="#" className="hero-btn">Portfolio</a>
+              </div>  
             </div>
-          </div>
-          <h1 className="mt-8 text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
-            John Developer
-          </h1>
-          <p className={`mt-4 text-xl ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>Full Stack Developer</p>
-          <div className="flex gap-4 mt-6">
-            <a href="#" className={`transition-colors ${isDark ? 'hover:text-blue-400' : 'hover:text-blue-600'}`}>
-              <Github className="w-6 h-6" />
-            </a>
-            <a href="#" className={`transition-colors ${isDark ? 'hover:text-blue-400' : 'hover:text-blue-600'}`}>
-              <Linkedin className="w-6 h-6" />
-            </a>
-            <a href="#" className={`transition-colors ${isDark ? 'hover:text-blue-400' : 'hover:text-blue-600'}`}>
-              <Mail className="w-6 h-6" />
-            </a>
+
+            <div className="animate-bounce [animation-duration:4.5s]  flex justify-center md:justify-end">
+              <div className="heroFloat hero-hexagon-wrap">
+                <div className="hero-hexagon">
+                  <img
+                    src="./assests/profile.png"
+                    alt="Mandeep profile"
+                    className="hero-image"
+                  />
+                </div>
+                <div className="hero-v-glow" aria-hidden="true">
+                  <span className="hero-v-line hero-v-line-left"></span>
+                  <span className="hero-v-line hero-v-line-right"></span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </header>
+      
 
       {/* About Section */}
       <section className={`py-20 ${isDark ? 'bg-gray-800/50' : 'bg-gray-50'}`}>
@@ -70,8 +97,8 @@ function App() {
           </h2>
           <div className="max-w-3xl mx-auto">
             <p className={`leading-relaxed mb-6 ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
-              I'm a passionate developer with 5 years of experience building web applications.
-              I specialize in React, Node.js, and cloud technologies. When I'm not coding,
+              I'm a passionate developer with 2+ years of experience building web applications.
+              I specialize in ASP.NET Core with C#. When I'm not coding,
               you can find me contributing to open source projects or writing technical blogs.
             </p>
             <div className="grid md:grid-cols-2 gap-8 mt-8">
@@ -96,8 +123,8 @@ function App() {
                 <h3 className="text-xl font-semibold mb-4">Languages</h3>
                 <ul className={`space-y-2 ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
                   <li>English (Native)</li>
-                  <li>Spanish (Fluent)</li>
-                  <li>French (Intermediate)</li>
+                  <li>Hindi (Fluent)</li>
+                  <li>Punjabi (Fluent)</li>
                 </ul>
               </div>
             </div>
@@ -314,9 +341,7 @@ function App() {
 }
 
 const skills = [
-  "React", "Node.js", "TypeScript", "Python",
-  "AWS", "Docker", "GraphQL", "MongoDB",
-  "Next.js", "TailwindCSS", "Git", "CI/CD"
+  "ASP.NET Core", "ASP.NET Mvc", "C#" , "SQL Server", "JQuery", "React", "HTML", "CSS", "TailwindCSS", "Git", "CI/CD"
 ];
 
 const experience = [
